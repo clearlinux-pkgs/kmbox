@@ -6,7 +6,7 @@
 #
 Name     : kmbox
 Version  : 18.08.0
-Release  : 1
+Release  : 2
 URL      : https://download.kde.org/stable/applications/18.08.0/src/kmbox-18.08.0.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.08.0/src/kmbox-18.08.0.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.08.0/src/kmbox-18.08.0.tar.xz.sig
@@ -15,6 +15,7 @@ Group    : Development/Tools
 License  : LGPL-2.1
 Requires: kmbox-lib
 Requires: kmbox-license
+Requires: kmbox-data
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : kmime-dev
@@ -23,10 +24,19 @@ BuildRequires : kmime-dev
 # KMBox #
 KMBox provides API to access emails in storages in the [MBox](https://tools.ietf.org/html/rfc4155) format
 
+%package data
+Summary: data components for the kmbox package.
+Group: Data
+
+%description data
+data components for the kmbox package.
+
+
 %package dev
 Summary: dev components for the kmbox package.
 Group: Development
 Requires: kmbox-lib
+Requires: kmbox-data
 Provides: kmbox-devel
 
 %description dev
@@ -36,6 +46,7 @@ dev components for the kmbox package.
 %package lib
 Summary: lib components for the kmbox package.
 Group: Libraries
+Requires: kmbox-data
 Requires: kmbox-license
 
 %description lib
@@ -58,7 +69,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535199584
+export SOURCE_DATE_EPOCH=1535431133
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -66,7 +77,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535199584
+export SOURCE_DATE_EPOCH=1535431133
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/kmbox
 cp COPYING.LIB %{buildroot}/usr/share/doc/kmbox/COPYING.LIB
@@ -76,6 +87,11 @@ popd
 
 %files
 %defattr(-,root,root,-)
+
+%files data
+%defattr(-,root,root,-)
+/usr/share/xdg/kmbox.categories
+/usr/share/xdg/kmbox.renamecategories
 
 %files dev
 %defattr(-,root,root,-)
