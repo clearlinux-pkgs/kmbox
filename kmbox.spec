@@ -5,17 +5,17 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kmbox
-Version  : 18.08.0
-Release  : 2
-URL      : https://download.kde.org/stable/applications/18.08.0/src/kmbox-18.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.08.0/src/kmbox-18.08.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.08.0/src/kmbox-18.08.0.tar.xz.sig
+Version  : 18.12.2
+Release  : 3
+URL      : https://download.kde.org/stable/applications/18.12.2/src/kmbox-18.12.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.2/src/kmbox-18.12.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.2/src/kmbox-18.12.2.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
-Requires: kmbox-lib
-Requires: kmbox-license
-Requires: kmbox-data
+Requires: kmbox-data = %{version}-%{release}
+Requires: kmbox-lib = %{version}-%{release}
+Requires: kmbox-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : kmime-dev
@@ -35,9 +35,9 @@ data components for the kmbox package.
 %package dev
 Summary: dev components for the kmbox package.
 Group: Development
-Requires: kmbox-lib
-Requires: kmbox-data
-Provides: kmbox-devel
+Requires: kmbox-lib = %{version}-%{release}
+Requires: kmbox-data = %{version}-%{release}
+Provides: kmbox-devel = %{version}-%{release}
 
 %description dev
 dev components for the kmbox package.
@@ -46,8 +46,8 @@ dev components for the kmbox package.
 %package lib
 Summary: lib components for the kmbox package.
 Group: Libraries
-Requires: kmbox-data
-Requires: kmbox-license
+Requires: kmbox-data = %{version}-%{release}
+Requires: kmbox-license = %{version}-%{release}
 
 %description lib
 lib components for the kmbox package.
@@ -62,25 +62,25 @@ license components for the kmbox package.
 
 
 %prep
-%setup -q -n kmbox-18.08.0
+%setup -q -n kmbox-18.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535431133
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1549870307
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535431133
+export SOURCE_DATE_EPOCH=1549870307
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/kmbox
-cp COPYING.LIB %{buildroot}/usr/share/doc/kmbox/COPYING.LIB
+mkdir -p %{buildroot}/usr/share/package-licenses/kmbox
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kmbox/COPYING.LIB
 pushd clr-build
 %make_install
 popd
@@ -111,8 +111,8 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5Mbox.so.5
-/usr/lib64/libKF5Mbox.so.5.9.0
+/usr/lib64/libKF5Mbox.so.5.10.2
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/kmbox/COPYING.LIB
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/kmbox/COPYING.LIB
