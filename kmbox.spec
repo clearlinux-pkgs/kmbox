@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kmbox
-Version  : 21.12.3
-Release  : 38
-URL      : https://download.kde.org/stable/release-service/21.12.3/src/kmbox-21.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.12.3/src/kmbox-21.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.12.3/src/kmbox-21.12.3.tar.xz.sig
+Version  : 22.04.0
+Release  : 39
+URL      : https://download.kde.org/stable/release-service/22.04.0/src/kmbox-22.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.04.0/src/kmbox-22.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.04.0/src/kmbox-22.04.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 LGPL-2.0
@@ -20,11 +20,9 @@ BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules-data
 BuildRequires : kmime-dev
-BuildRequires : qtbase-dev
 
 %description
-# KMBox #
-KMBox provides API to access emails in storages in the [MBox](https://tools.ietf.org/html/rfc4155) format
+SPDX-License-Identifier: CC0-1.0
 
 %package data
 Summary: data components for the kmbox package.
@@ -65,15 +63,15 @@ license components for the kmbox package.
 
 
 %prep
-%setup -q -n kmbox-21.12.3
-cd %{_builddir}/kmbox-21.12.3
+%setup -q -n kmbox-22.04.0
+cd %{_builddir}/kmbox-22.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1646545386
+export SOURCE_DATE_EPOCH=1650676876
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -89,14 +87,16 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1646545386
+export SOURCE_DATE_EPOCH=1650676876
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kmbox
-cp %{_builddir}/kmbox-21.12.3/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/kmbox/29fb05b49e12a380545499938c4879440bd8851e
-cp %{_builddir}/kmbox-21.12.3/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/kmbox/8287b608d3fa40ef401339fd907ca1260c964123
-cp %{_builddir}/kmbox-21.12.3/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kmbox/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/kmbox-21.12.3/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kmbox/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/kmbox-21.12.3/metainfo.yaml.license %{buildroot}/usr/share/package-licenses/kmbox/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4
+cp %{_builddir}/kmbox-22.04.0/.krazy.license %{buildroot}/usr/share/package-licenses/kmbox/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4
+cp %{_builddir}/kmbox-22.04.0/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kmbox/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/kmbox-22.04.0/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/kmbox/8287b608d3fa40ef401339fd907ca1260c964123
+cp %{_builddir}/kmbox-22.04.0/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kmbox/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kmbox-22.04.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kmbox/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kmbox-22.04.0/README.md.license %{buildroot}/usr/share/package-licenses/kmbox/cadc9e08cb956c041f87922de84b9206d9bbffb2
+cp %{_builddir}/kmbox-22.04.0/metainfo.yaml.license %{buildroot}/usr/share/package-licenses/kmbox/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4
 pushd clr-build
 %make_install
 popd
@@ -116,7 +116,7 @@ popd
 /usr/include/KF5/KMbox/kmbox/kmbox_export.h
 /usr/include/KF5/KMbox/kmbox/mbox.h
 /usr/include/KF5/KMbox/kmbox/mboxentry.h
-/usr/include/KF5/kmbox_version.h
+/usr/include/KF5/KMbox/kmbox_version.h
 /usr/lib64/cmake/KF5Mbox/KF5MboxConfig.cmake
 /usr/lib64/cmake/KF5Mbox/KF5MboxConfigVersion.cmake
 /usr/lib64/cmake/KF5Mbox/KF5MboxTargets-relwithdebinfo.cmake
@@ -127,11 +127,12 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5Mbox.so.5
-/usr/lib64/libKF5Mbox.so.5.19.3
+/usr/lib64/libKF5Mbox.so.5.20.0
 
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/kmbox/20079e8f79713dce80ab09774505773c926afa2a
-/usr/share/package-licenses/kmbox/29fb05b49e12a380545499938c4879440bd8851e
 /usr/share/package-licenses/kmbox/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4
 /usr/share/package-licenses/kmbox/8287b608d3fa40ef401339fd907ca1260c964123
+/usr/share/package-licenses/kmbox/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+/usr/share/package-licenses/kmbox/cadc9e08cb956c041f87922de84b9206d9bbffb2
