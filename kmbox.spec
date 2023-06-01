@@ -7,7 +7,7 @@
 #
 Name     : kmbox
 Version  : 23.04.1
-Release  : 53
+Release  : 54
 URL      : https://download.kde.org/stable/release-service/23.04.1/src/kmbox-23.04.1.tar.xz
 Source0  : https://download.kde.org/stable/release-service/23.04.1/src/kmbox-23.04.1.tar.xz
 Source1  : https://download.kde.org/stable/release-service/23.04.1/src/kmbox-23.04.1.tar.xz.sig
@@ -76,7 +76,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1684860120
+export SOURCE_DATE_EPOCH=1685588174
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -109,7 +109,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1684860120
+export SOURCE_DATE_EPOCH=1685588174
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kmbox
 cp %{_builddir}/kmbox-%{version}/.krazy.license %{buildroot}/usr/share/package-licenses/kmbox/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4 || :
@@ -137,7 +137,6 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libKPim5Mbox.so
 /usr/include/KPim5/KMbox/KMbox/MBox
 /usr/include/KPim5/KMbox/KMbox/MBoxEntry
 /usr/include/KPim5/KMbox/kmbox/kmbox_export.h
@@ -157,7 +156,6 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libKPim5Mbox.so.5
 /V3/usr/lib64/libKPim5Mbox.so.5.23.1
 /usr/lib64/libKPim5Mbox.so.5
 /usr/lib64/libKPim5Mbox.so.5.23.1
