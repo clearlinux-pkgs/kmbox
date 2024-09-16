@@ -9,7 +9,7 @@
 #
 Name     : kmbox
 Version  : 24.08.1
-Release  : 74
+Release  : 75
 URL      : https://download.kde.org/stable/release-service/24.08.1/src/kmbox-24.08.1.tar.xz
 Source0  : https://download.kde.org/stable/release-service/24.08.1/src/kmbox-24.08.1.tar.xz
 Source1  : https://download.kde.org/stable/release-service/24.08.1/src/kmbox-24.08.1.tar.xz.sig
